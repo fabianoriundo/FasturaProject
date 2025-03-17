@@ -343,11 +343,17 @@ class SaleOpportunityController extends Controller
     public function download($external_id, $format = 'a4') {
         $sale_opportunity = SaleOpportunity::where('external_id', $external_id)->first();
 
-        if (!$sale_opportunity) throw new Exception("El código {$external_id} es inválido, no se encontro el pedido relacionado");
+        if (!$sale_opportunity) {
+            return redirect()->back()->with('error', 'El código ' . $external_id . ' es inválido, no se encontro el pedido relacionado.');
+        }
 
-        $this->reloadPDF($sale_opportunity, $format, $sale_opportunity->filename);
-
-        return $this->downloadStorage($sale_opportunity->filename, 'sale_opportunity');
+        try {
+            $this->reloadPDF($sale_opportunity, $format, $sale_opportunity->filename);
+            return $this->downloadStorage($sale_opportunity->filename, 'sale_opportunity');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'El archivo PDF no esta disponible.');
+        }
+        
     }
 
 
