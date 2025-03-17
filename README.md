@@ -2,6 +2,22 @@
 
 # **Facturador PRO 5**
 
+## Cambios recientes en el proyecto
+
+### Corrección en rutas protegidas
+
+Se ha corregido el acceso a rutas protegidas en los módulos Restaurante, Suscripción y Full Suscripción, asegurando que requieran autenticación antes de cargarse. Esto soluciona un error que ocurría cuando un usuario intentaba acceder sin iniciar sesión.
+
+### Manejo de errores en descargas de archivos
+
+Se han realizado mejoras en la gestión de descargas en los siguientes archivos:
+
+* SaleOpportunityController: Ahora muestra un mensaje de error cuando el código del pedido es inválido o cuando el archivo PDF no está disponible.
+  
+* SaleOpportunityFileController: Se ha añadido una validación para mostrar un error cuando el archivo solicitado ya no existe.
+  
+* Vista Index: Se ha agregado una alerta para mostrar errores en la interfaz cuando ocurran problemas con las descargas.
+
 
 ## Términos y condiciones del uso de este repositorio
 
