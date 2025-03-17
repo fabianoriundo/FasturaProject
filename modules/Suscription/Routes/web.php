@@ -6,6 +6,7 @@
     $current_hostname = app(Hyn\Tenancy\Contracts\CurrentHostname::class);
 
     if ($current_hostname) {
+        // Cambio
         Route::domain($current_hostname->fqdn)
             ->middleware(['auth', 'locked.tenant', 'redirect.level'])->group(function () {
             Route::prefix('suscription')

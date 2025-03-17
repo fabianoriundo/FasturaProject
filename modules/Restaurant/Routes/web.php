@@ -16,6 +16,7 @@
     $current_hostname = app(Hyn\Tenancy\Contracts\CurrentHostname::class);
 
     if ($current_hostname) {
+        // Cambio
         Route::domain($current_hostname->fqdn)->group(function () {
             Route::middleware(['auth', 'locked.tenant', 'redirect.level'])->group(function () { 
                 Route::prefix('restaurant')->group(function() {
